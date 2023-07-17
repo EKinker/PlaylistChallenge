@@ -4,11 +4,35 @@ public class Music {
 
     private String[] playList;
 
-    public Music(String[] playList){
+    public Music(String[] playList) {
         this.playList = playList;
     }
 
-    public Integer selection(Integer startIndex, String selection){
-        return null;
+    public Integer selection(Integer startIndex, String selection) {
+        int counterUp = 0;
+        int counterDown = 0;
+        int i = startIndex;
+        int j = startIndex;
+
+        while (!playList[i].equals(selection)) { //while the song at position i is not the song we're looking for...
+            if (i == playList.length - 1) {
+                i = 0;
+            } else {
+                i++;
+            }
+            counterUp++;
+        }
+        while (!playList[j].equals(selection)) {
+            if (j == 0) {
+                j = playList.length - 1;
+            } else {
+                j--;
+            }
+            counterDown++;
+        }
+        if (counterDown < counterUp) {
+            return counterDown;
+        }
+        return counterUp;
     }
 }
